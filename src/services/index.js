@@ -8,7 +8,9 @@ module.exports = (app) => {
     const { query: { keyword } } = req
     fs.readFile(filePath, 'utf8', (e, data) => {
       if (e) {
-        console.log(e)
+        console.log('fs error', e)
+        res.status(404)
+        res.send({ 'fs error': e })
         return
       }
       const notesData = data ? JSON.parse(data) : {}
@@ -25,7 +27,9 @@ module.exports = (app) => {
     console.log({ keyword, note })
     fs.readFile(filePath, 'utf8', (e, data) => {
       if (e) {
-        console.log(e)
+        console.log('fs error', e)
+        res.status(404)
+        res.send({ 'fs error': e })
         return
       }
       const notesData = data ? JSON.parse(data) : {}
